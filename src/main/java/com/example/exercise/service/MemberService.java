@@ -1,5 +1,7 @@
 package com.example.exercise.service;
 
+import com.example.exercise.dto.JoinDto;
+import com.example.exercise.dto.LoginDto;
 import com.example.exercise.mapper.MemberMapper;
 import com.example.exercise.vo.Member;
 import lombok.RequiredArgsConstructor;
@@ -17,4 +19,13 @@ public class MemberService {
     public List<Member> getMembers() {
         return memberMapper.findByAll();
     }
+
+    public Member getMember(LoginDto loginDto) {
+        return memberMapper.findById(loginDto);
+    }
+
+    public boolean insertMember(JoinDto joinDto) {
+        return memberMapper.insertMember(joinDto);
+    }
+
 }

@@ -1,9 +1,9 @@
 package com.example.exercise.dto;
 
-import lombok.Data;
+import lombok.Builder;
 
-@Data
-public class JoinRequest {
+@Builder
+public class JoinDto {
 
     private String memberId;
     private String memberName;
