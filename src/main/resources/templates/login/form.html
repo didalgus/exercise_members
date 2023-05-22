@@ -6,11 +6,14 @@
 
 <div layout:fragment="content">
 
+    테스트용 계정 : test / 1234  <br /><br />
+
     <form id="loginForm" action="/member/login" enctype="multipart/form-data">
-        member Id : <input id="memberId" name="memberId"> <br />
-        member Password : <input id="memberPassword" name="memberPassword"> <br />
+        member Id : <input id="memberId" name="memberId"> 2자 이상 입력하세요. <br />
+        member Password : <input id="memberPassword" name="memberPassword"> 1자 이상 입력하세요. <br />
         <input type="submit" th:value="login">
     </form>
+
 
 </div>
 </html>

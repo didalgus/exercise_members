@@ -6,11 +6,11 @@
 <div layout:fragment="content">
 
     <form id="joinForm" action="/member/join" enctype="multipart/form-data">
-        member Id : <input id="memberId" name="memberId"> <br />
-        member Name : <input id="memberName" name="memberName"> <br />
-        member Password : <input id="memberPassword" name="memberPassword"> <br />
+        member Id : <input id="memberId" name="memberId"> 2자 이상 입력하세요. <br />
+        member Name : <input id="memberName" name="memberName"> 2자 이상, 20자 이하 입력하세요. <br />
+        member Password : <input id="memberPassword" name="memberPassword"> 1자 이상 입력하세요. <br />
         <input type="submit" th:value="join">
-    </form>인
+    </form>
 
 </div>
 </html>
