@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 @Slf4j
 @SpringBootTest
-class ExerciseMembersApplicationTests {
+class ExerciseMembersApplicationTestsController {
 
     @Test
     void contextLoads(){

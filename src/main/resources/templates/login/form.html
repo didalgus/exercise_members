@@ -1,12 +1,62 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      data-layout-decorate="~{main/main}">
+      data-layout-decorate="~{layout/layout}">
 
 
 <div layout:fragment="content">
 
-    userId : <input name="userid"> <br />
-    userPassword : <input name="userPassword"> <br />
+    <form id="loginForm" action="/member/login" enctype="multipart/form-data">
+        member Id : <input id="memberId" name="memberId"> <br />
+        member Password : <input id="memberPassword" name="memberPassword"> <br />
+        <input type="submit" th:value="login">
+    </form>
+
 </div>
 </html>
+
+
+<script>
+    $("#loginForm").on("submit", function(event) {
+
+        // Stop form from submitting normally
+        event.preventDefault();
+
+        // Get some values from elements on the page
+        let $form = $( this ),
+            url = $form.attr("action"),
+            formData = {
+                memberId: $("#memberId").val(),
+                memberPassword: $("#memberPassword").val()
+            };
+
+        let posting = $.post(url, formData);
+
+        posting.done(function(data) {
+            console.log(data)
+
+            if(data == "OK") {
+                alert("로그인 성공하였습니다.");
+                location.replace("/");
+            } else {
+                alert(data);
+            }
+
+        }).fail(function (data) {
+
+            if(data.status == 404){
+                alert("페이지가 존재하지 않습니다");
+            }else if(data.status == 500) {
+                alert("서버에러");
+            }else {
+                if(data.responseJSON.length > 0) {
+                    for(let i in data.responseJSON) {
+                        console.log(data.responseJSON[i]);
+                        alert(data.responseJSON[i]);
+                    }
+                }
+            }
+
+        });
+    });
+</script>

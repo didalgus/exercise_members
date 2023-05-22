@@ -1,6 +1,7 @@
 package com.example.exercise.service;
 
 
+import com.example.exercise.dto.JoinDto;
 import com.example.exercise.dto.LoginDto;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
@@ -31,7 +32,7 @@ public class ValidationTest {
         factory.close();
     }
 
-    @DisplayName("빈문자열 전송 테스트")
+    @DisplayName("로그인시 빈문자열 전송 테스트")
     @Test
     void blank_validation_test() {
 
@@ -43,12 +44,30 @@ public class ValidationTest {
         Set<ConstraintViolation<LoginDto>> validations = valiator.validate(loginDto);
 
         /*
-        message : Please enter your password
-        message : Please enter your id
-        message : 3 이상이어야 합니다
+        message : Member Id : Please enter 1 characters or more
+        message : Member Password : Please enter your password
+        message : Member Id : Please enter your id
          */
         validations.forEach(error -> System.out.println("message : " + error.getMessage()));
 
+    }
+
+    @DisplayName("가입시 validation 체크")
+    @Test
+    void join_validation_test() {
+        JoinDto joinDto = JoinDto.builder()
+                .memberId("1")
+                .memberName("")
+                .memberPassword("1234")
+                .build();
+
+        Set<ConstraintViolation<JoinDto>> validations = valiator.validate(joinDto);
+
+        /*
+        Property : memberName, message : Member Name : Please enter your name
+        Property : memberName, message : Member Name : The name must be at least 2 characters and no more than 20 characters
+         */
+        validations.forEach(error -> System.out.println("Property : " + error.getPropertyPath() + ", message : " + error.getMessage()));
     }
 
 }

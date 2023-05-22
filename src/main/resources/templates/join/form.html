@@ -1,13 +1,62 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      data-layout-decorate="~{main/main}">
-
+      data-layout-decorate="~{layout/layout}">
 
 <div layout:fragment="content">
 
-    userId : <input name="userid"> <br />
-    userName : <input name="userName"> <br />
-    userPassword : <input name="userPassword"> <br />
+    <form id="joinForm" action="/member/join" enctype="multipart/form-data">
+        member Id : <input id="memberId" name="memberId"> <br />
+        member Name : <input id="memberName" name="memberName"> <br />
+        member Password : <input id="memberPassword" name="memberPassword"> <br />
+        <input type="submit" th:value="join">
+    </form>인
+
 </div>
 </html>
+
+<script>
+    $("#joinForm").on("submit", function(event) {
+
+        // Stop form from submitting normally
+        event.preventDefault();
+
+        // Get some values from elements on the page
+        let $form = $( this ),
+            url = $form.attr("action"),
+            formData = {
+                memberId: $("#memberId").val(),
+                memberName: $("#memberName").val(),
+                memberPassword: $("#memberPassword").val()
+            };
+
+        let posting = $.post(url, formData);
+
+        posting.done(function(data) {
+            console.log(data)
+
+            if(data == "OK") {
+                alert("저장 성공하였습니다.");
+                location.replace("/");
+            } else {
+                alert("저장 실패하였습니다!");
+            }
+
+        }).fail(function (data, jqXHR, textStatus, errorThrown) {
+
+            if(jqXHR.status == 404){
+                alert("페이지가 존재하지 않습니다");
+            }else if(jqXHR.status == 500) {
+                alert("서버에러");
+            }else {
+                if(data.responseJSON.length > 0) {
+                    for(let i in data.responseJSON) {
+                        console.log(data.responseJSON[i]);
+                        alert(data.responseJSON[i]);
+                    }
+                }
+            }
+
+        });
+    });
+</script>

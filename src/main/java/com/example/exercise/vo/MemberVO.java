@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Member {
+public class MemberVO {
     private String memberId;
     private String memberName;
+    private String memberPassword;
 }

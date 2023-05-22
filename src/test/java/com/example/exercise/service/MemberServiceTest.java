@@ -3,7 +3,7 @@ package com.example.exercise.service;
 import com.example.exercise.dto.JoinDto;
 import com.example.exercise.dto.LoginDto;
 import com.example.exercise.mapper.MemberMapper;
-import com.example.exercise.vo.Member;
+import com.example.exercise.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -36,7 +36,7 @@ class MemberServiceTest {
 
         memberService.insertMember(joinDto);
 
-        List<Member> list = memberService.getMembers();
+        List<MemberVO> list = memberService.getMembers();
         int size = list.size();
         log.info("size : {}", size);
         assertTrue(size > 0);
@@ -48,22 +48,25 @@ class MemberServiceTest {
     void member_search_test() {
 
         LoginDto loginDto = LoginDto.builder()
-                .memberId("member1id")
+                .memberId("test")
                 .memberPassword("1234")
                 .build();
 
-        Member member = memberService.getMember(loginDto);
+        MemberVO memberVO = memberService.getMember(loginDto);
+
+        String hashPassword = memberService.selectHash(loginDto.getMemberPassword());
 
         assertAll(
-                () -> assertEquals(loginDto.getMemberId(), member.getMemberId()),
-                () -> assertEquals("member1name", member.getMemberName())
+                () -> assertEquals(loginDto.getMemberId(), memberVO.getMemberId()),
+                () -> assertEquals("hong gil-dong", memberVO.getMemberName()),
+                () -> assertEquals(hashPassword, memberVO.getMemberPassword())
         );
     }
 
     @DisplayName("멤버 삭제 테스트")
     @Test
     void member_delete_test() {
-        boolean deleteMember = memberMapper.deleteMember("member1id");
-        assertTrue(deleteMember);
+        int deleteMember = memberMapper.deleteMember("member1id");
+        assertEquals(1, deleteMember);
     }
 }

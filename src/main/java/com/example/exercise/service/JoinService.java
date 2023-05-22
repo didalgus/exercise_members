@@ -11,13 +11,13 @@ public class JoinService {
 
     private final MemberMapper memberMapper;
 
-    public String greet() {
-        return "Hello, willow";
-    }
+    public String insertMember(JoinDto joinDto) {
+        int result = memberMapper.insertMember(joinDto);
 
-    //TODO
-    // MembersService 로 이동하기
-    public void insertMember(JoinDto joinDto) {
-        memberMapper.insertMember(joinDto);
+        if(result == 1) {
+            return "OK";
+        } else {
+            return "FAIL";
+        }
     }
 }

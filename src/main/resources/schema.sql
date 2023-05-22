@@ -7,4 +7,4 @@ CREATE TABLE members(
                       PRIMARY KEY (seq)
 );
 
-INSERT INTO members(member_id, member_name, member_password) VALUES ('member1id','member1name','1234');
+INSERT INTO members(member_id, member_name, member_password) VALUES ('test', 'hong gil-dong', HASH('MD5', '1234'));
