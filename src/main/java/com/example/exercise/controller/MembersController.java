@@ -2,7 +2,6 @@ package com.example.exercise.controller;
 
 import com.example.exercise.dto.JoinDto;
 import com.example.exercise.dto.LoginDto;
-import com.example.exercise.service.JoinService;
 import com.example.exercise.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -9,6 +9,8 @@
 - mybaits 3.5.11
 - H2 (Database) 2.1.2146
 - thymeleaf 3.0.15
+
+
 ## APIs.
 
 http://localhost:8080/members/list
@@ -30,3 +32,7 @@ password :
 
 
 SELECT * FROM members
+
+## mybatis
+
+https://mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/
