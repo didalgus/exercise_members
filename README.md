@@ -58,3 +58,9 @@ SELECT * FROM members
 ## mybatis
 
 https://mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/
+
+
+## Test 
+
+Test 보고서  
+![h2-select](src/main/resources/static/images/h2-test-report.png)

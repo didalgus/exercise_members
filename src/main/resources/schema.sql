@@ -8,3 +8,4 @@ CREATE TABLE members(
 );
 
 INSERT INTO members(member_id, member_name, member_password) VALUES ('test', 'hong gil-dong', HASH('MD5', '1234'));
+INSERT INTO members(member_id, member_name, member_password) VALUES ('delete_id', 'hong gil-dong2', HASH('MD5', '1234'));

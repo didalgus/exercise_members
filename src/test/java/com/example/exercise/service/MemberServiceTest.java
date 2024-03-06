@@ -66,7 +66,8 @@ class MemberServiceTest {
     @DisplayName("멤버 삭제 테스트")
     @Test
     void member_delete_test() {
-        int deleteMember = memberMapper.deleteMember("member1id");
+
+        int deleteMember = memberMapper.deleteMember("delete_id");
         assertEquals(1, deleteMember);
     }
 }
